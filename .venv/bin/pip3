@@ -1,4 +1,4 @@
-#!/home/vick/Transferências/programação/Codewars/credit-agent/.venv/bin/python
+#!/home/vick/Transferências/programação/credit-agent/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

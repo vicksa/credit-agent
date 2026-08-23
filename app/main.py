@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from app.credit_service import analyze_credit
+
 app = FastAPI(
     title="Credit Agent",
     description="API de analise de credito",
@@ -21,7 +23,7 @@ def root():
     }
 
 @app.post("/credit/analyze")
-def analyze_credit(request: CreditRequest):
+def analyze_credit_request(request: CreditRequest):
     return {
         "message": "Solicitaçao recebida",
         "customer": request.name,
