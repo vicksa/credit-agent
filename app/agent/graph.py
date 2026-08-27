@@ -17,21 +17,53 @@ def calculate_debt_to_income(state: CreditState):
               "debt_to_income": round(debt_to_income, 2)
         }
 
+def calculate_risk(state: CreditState):
+      debt_to_income = state["debt_to_income"]
+      if debt_to_income <= 2:
+            risk =  "low"
+      elif debt_to_income <= 4:
+            risk = "medium"
+      else:
+            risk = "high"
+      return {
+            "risk" : risk
+      }
+      
+
 builder = StateGraph(CreditState)
 
 builder.add_node(
       "calculate_debt_to_income",
       calculate_debt_to_income
 )
+builder.add_node(
+      "calculate_risk",
+      calculate_risk
+)
 
 builder.add_edge(
       START,
-      "calculate_debt_to_income"
+      "calculate_debt_to_income",
+
+)
+
+
+builder.add_edge(
+      "calculate_debt_to_income",
+      "calculate_risk",
 )
 
 builder.add_edge(
-      "calculate_debt_to_income"
-    END
+      "calculate_risk",
+ 
+   END
 )
 
+
+
+
+
+
+
 graph = builder.compile()
+
