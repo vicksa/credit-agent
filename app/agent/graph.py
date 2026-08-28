@@ -29,6 +29,17 @@ def calculate_risk(state: CreditState):
             "risk" : risk
       }
       
+def make_decision(state: CreditState):
+      risk = state["risk"]
+      if risk == "low":
+            decision = "approved"
+      elif risk == "medium":
+             decision = "review"
+      else:
+            decision = "denied"
+      return {
+            "decision": decision
+      }
 
 builder = StateGraph(CreditState)
 
